@@ -37,7 +37,7 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-// FAQ accordion
+/* FAQ accordion */
 const faqItems = document.querySelectorAll(".faq-item");
 
 faqItems.forEach((item) => {
@@ -46,7 +46,9 @@ faqItems.forEach((item) => {
   question.addEventListener("click", () => {
     const isActive = item.classList.contains("active");
 
-    faqItems.forEach((faq) => faq.classList.remove("active"));
+    faqItems.forEach((faq) => {
+      faq.classList.remove("active");
+    });
 
     if (!isActive) {
       item.classList.add("active");
@@ -54,9 +56,35 @@ faqItems.forEach((item) => {
   });
 });
 
-// Form submit
-leadForm.addEventListener("submit", (event) => {
+/* Smooth close for same-page anchor nav on mobile */
+const navLinks = document.querySelectorAll('a[href^="#"]');
+
+navLinks.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const href = link.getAttribute("href");
+
+    if (href.length > 1) {
+      const target = document.querySelector(href);
+
+      if (target) {
+        event.preventDefault();
+
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    }
+  });
+});
+
+/* Lead form submit */
+leadForm.addEventListener("submit", async (event) => {
   event.preventDefault();
+
+  const submitButton = leadForm.querySelector('button[type="submit"]');
+  submitButton.disabled = true;
+  submitButton.textContent = "Göndərilir...";
 
   const formData = new FormData(leadForm);
 
@@ -73,32 +101,36 @@ leadForm.addEventListener("submit", (event) => {
   console.log("Lead data:", leadData);
 
   /*
-    Burada real inteqrasiya edə bilərsən:
+    Real inteqrasiya üçün bura webhook əlavə et:
 
-    1. Google Sheets webhook
-    2. Telegram bot
-    3. CRM
-    4. Email service
-    5. Formspree / Getform / Make.com webhook
-
-    Nümunə:
-
-    fetch("YOUR_WEBHOOK_URL", {
+    await fetch("YOUR_WEBHOOK_URL", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(leadData)
     });
+
+    Variantlar:
+    - Make.com webhook
+    - Zapier webhook
+    - Google Sheets webhook
+    - Telegram bot endpoint
+    - CRM endpoint
   */
 
-  leadForm.style.display = "none";
-  successMessage.style.display = "block";
+  setTimeout(() => {
+    leadForm.style.display = "none";
+    successMessage.style.display = "block";
+
+    submitButton.disabled = false;
+    submitButton.textContent = "Detalları göndər";
+  }, 650);
 
   setTimeout(() => {
     leadForm.reset();
     leadForm.style.display = "grid";
     successMessage.style.display = "none";
     closeModal();
-  }, 2600);
+  }, 3200);
 });
