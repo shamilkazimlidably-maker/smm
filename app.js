@@ -234,7 +234,7 @@ function getYouTubeEmbedUrl(url) {
 
   videoId = videoId.split("?")[0].split("&")[0];
 
-  return `https://www.youtube.com/embed/${videoId}`;
+ return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&playsinline=1&rel=0&modestbranding=1`;
 }
 
 function initYouTubeVideos() {
@@ -251,13 +251,13 @@ function initYouTubeVideos() {
     block.classList.add("has-video");
 
     block.innerHTML = `
-      <iframe
-        src="${embedUrl}"
-        title="SMM 360 Video"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-      </iframe>
-    `;
+  <iframe
+    src="${embedUrl}"
+    title="SMM 360 Video"
+    allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+  </iframe>
+`;
   });
 }
 
