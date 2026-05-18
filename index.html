@@ -59,13 +59,19 @@
           müştəri psixologiyası, kontent strategiyası, KPI, analitika, AI alətlər və real Azərbaycan case-ləri ilə.
         </p>
 
+        <div class="audience-pills">
+          <span>Yeni başlayanlar üçün</span>
+          <span>SMM işləyənlər üçün</span>
+          <span>Biznes sahibləri üçün</span>
+        </div>
+
         <div class="hero-actions">
           <button class="btn btn-primary open-modal" data-cta="Hero">Detalları göndər</button>
           <a href="#program" class="btn btn-light">Proqrama bax</a>
         </div>
 
         <p class="hero-note">
-          Formu doldur, sənə proqram, paket detalları və qeydiyyat məlumatları göndərilsin.
+          Formu doldurmaq qeydiyyat məcburiyyəti yaratmır. Sadəcə proqram və paket detalları sənə göndərilir.
         </p>
 
         <div class="hero-browser">
@@ -78,10 +84,12 @@
           </div>
 
           <div class="browser-body">
-            <div class="video-box">
-              <div class="play-btn">▶</div>
-              <strong>VSL Video</strong>
-              <span>Bu videoya baxmadan qərar vermə</span>
+            <div class="video-box js-youtube-video" data-youtube-url="YOUTUBE_LINK_HERE">
+              <div class="video-placeholder">
+                <div class="play-btn">▶</div>
+                <strong>VSL Video</strong>
+                <span>Bu videoya baxmadan qərar vermə</span>
+              </div>
             </div>
 
             <div class="float-card float-1">
@@ -269,10 +277,13 @@
 
     <section class="section story-section">
       <div class="container story-layout">
-        <div class="story-photo-card">
-          <div class="story-avatar">Ş</div>
+        <div class="story-photo-card image-card">
+          <div class="story-image-wrap">
+            <img src="IMAGE_URL_HERE" alt="Şamil Kazımlı — SMM 360 mentor">
+          </div>
 
-          <div>
+          <div class="fallback-avatar">
+            <div class="story-avatar">Ş</div>
             <strong>Şamil Kazımlı</strong>
             <p>SMM, startup və digital marketing təcrübəsi</p>
           </div>
@@ -360,14 +371,14 @@
         </div>
 
         <div class="deliverables-grid">
-          <div>Content Strategy Template</div>
-          <div>KPI & Report Template</div>
-          <div>Audience Research Checklist</div>
-          <div>AI Prompt Library</div>
-          <div>Creative Testing Sheet</div>
-          <div>Final Project Framework</div>
-          <div>Content Calendar Template</div>
-          <div>Case Analysis Framework</div>
+          <div>1 aylıq kontent plan template-i</div>
+          <div>Rəqib analizi cədvəli</div>
+          <div>Audience research checklist</div>
+          <div>AI prompt kitabxanası</div>
+          <div>Creative testing sheet</div>
+          <div>Final project framework</div>
+          <div>KPI və aylıq report şablonu</div>
+          <div>Portfolio case study formatı</div>
         </div>
       </div>
     </section>
@@ -495,6 +506,32 @@
       </div>
     </section>
 
+    <section class="section final-project-section">
+      <div class="container final-project-card">
+        <div>
+          <div class="section-kicker">Final project</div>
+          <h2>Portfolio-ya qoya biləcəyin real strategy project hazırlayacaqsan</h2>
+          <p class="lead">
+            Kursun sonunda bir biznes üçün tam sosial media sistemi hazırlayırsan.
+            Bu sadəcə imtahan deyil, həm də portfolio materialıdır.
+          </p>
+        </div>
+
+        <div class="project-list">
+          <span>Biznes analizi</span>
+          <span>Rəqib analizi</span>
+          <span>Audience research</span>
+          <span>Kontent strategiyası</span>
+          <span>1 aylıq content plan</span>
+          <span>KPI sistemi</span>
+          <span>Funnel</span>
+          <span>AI workflow</span>
+          <span>Report template</span>
+          <span>30 günlük action plan</span>
+        </div>
+      </div>
+    </section>
+
     <section class="section assessment-section">
       <div class="container assessment-shell">
         <div>
@@ -579,6 +616,7 @@
           <h2>Sənə uyğun proqramı seç</h2>
           <p>
             Qiymət səhifədə göstərilmir. Formu doldur, proqram və paket detalları sənə göndərilsin.
+            Uyğun deyilsə, davam etmək məcburiyyətin yoxdur.
           </p>
         </div>
 
@@ -611,8 +649,8 @@
               <p>Canlı dərslərdə aktiv iştirak edə bilirsənsə və əsas proqramla inkişaf etmək istəyirsənsə.</p>
             </div>
 
-            <button class="btn btn-white-bordered full open-modal" data-package="Core Program">
-              Paket detalları gəlsin
+            <button class="btn btn-white-bordered full open-modal" data-package="Core Program" data-cta="Core Package">
+              Core paketinin detalını göndər
             </button>
           </article>
 
@@ -644,8 +682,8 @@
               <p>Video qeydlər, CV, portfolio və kursdan sonra əlavə mentorluq istəyirsənsə.</p>
             </div>
 
-            <button class="btn btn-primary full open-modal" data-package="Mentorship Program">
-              Paket detalları gəlsin
+            <button class="btn btn-primary full open-modal" data-package="Mentorship Program" data-cta="Mentorship Package">
+              Mentorluq paketinin detalını göndər
             </button>
           </article>
         </div>
@@ -702,11 +740,31 @@
 
           <div class="faq-item">
             <button class="faq-question">
-              <span>İmtahan olacaq?</span>
+              <span>Kursda praktiki tapşırıqlar yoxlanılacaq?</span>
               <b>+</b>
             </button>
             <div class="faq-answer">
-              <p>Bəli. Hər dərs sonu quiz, mid imtahan və final imtahan/final project olacaq.</p>
+              <p>Bəli. Tapşırıqlar feedback sistemi ilə yoxlanılacaq və tələbənin inkişafı izlənəcək.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Bu media buying kursudur?</span>
+              <b>+</b>
+            </button>
+            <div class="faq-answer">
+              <p>Xeyr. Amma SMM-in reklam məqsədlərini, kreativ testləri və metrikləri başa düşməsi üçün reklam məntiqi keçilir.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Kurs hansı platformaları əhatə edir?</span>
+              <b>+</b>
+            </button>
+            <div class="faq-answer">
+              <p>Instagram, TikTok, LinkedIn və Meta reklam məntiqi əsas platformalar kimi əhatə olunur.</p>
             </div>
           </div>
 
@@ -749,10 +807,12 @@
         və 4 ay ərzində necə işlədiyini izah edirəm.
       </p>
 
-      <div class="thank-video">
-        <div class="play-btn">▶</div>
-        <strong>Thank You Video</strong>
-        <span>Burada video yerləşəcək</span>
+      <div class="thank-video js-youtube-video" data-youtube-url="YOUTUBE_LINK_HERE">
+        <div class="video-placeholder">
+          <div class="play-btn">▶</div>
+          <strong>Thank You Video</strong>
+          <span>Burada video yerləşəcək</span>
+        </div>
       </div>
 
       <div class="next-steps">
@@ -796,7 +856,8 @@
   </footer>
 
   <div class="mobile-sticky">
-    <button class="btn btn-primary full open-modal" data-cta="Mobile Sticky">Detalları göndər</button>
+    <a href="#program" class="sticky-link">Proqram</a>
+    <button class="btn btn-primary open-modal" data-cta="Mobile Sticky">Detalları göndər</button>
   </div>
 
   <div class="modal-overlay" id="leadModal">
@@ -817,6 +878,10 @@
         <input type="hidden" id="selectedPackage" name="selectedPackage" value="Ümumi maraq">
         <input type="hidden" id="selectedGoal" name="selectedGoal" value="">
         <input type="hidden" id="ctaSource" name="ctaSource" value="">
+
+        <div class="selected-package-box" id="selectedPackageBox">
+          Seçilən paket: <strong id="selectedPackageText">Ümumi maraq</strong>
+        </div>
 
         <div class="form-step active" data-step="1">
           <div class="modal-header">
@@ -845,23 +910,32 @@
           </div>
 
           <div class="form-group">
-            <label for="name">Ad və soyad</label>
+            <label for="name">Ad və soyad *</label>
             <input type="text" id="name" name="name" placeholder="Məsələn: Şamil Kazımlı" required>
           </div>
 
           <div class="form-group">
-            <label for="phone">Telefon nömrəsi</label>
-            <input type="tel" id="phone" name="phone" placeholder="+994 XX XXX XX XX" required>
+            <label for="phone">Telefon nömrəsi *</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value="+994 "
+              placeholder="+994 XX XXX XX XX"
+              inputmode="tel"
+              minlength="13"
+              required
+            >
           </div>
 
           <div class="form-group">
-            <label for="email">Email</label>
+            <label for="email">Email *</label>
             <input type="email" id="email" name="email" placeholder="mail@example.com" required>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label for="contactMethod">Səninlə necə əlaqə saxlayaq?</label>
+              <label for="contactMethod">Səninlə necə əlaqə saxlayaq? *</label>
               <select id="contactMethod" name="contactMethod" required>
                 <option value="">Seç</option>
                 <option>WhatsApp</option>
@@ -872,7 +946,7 @@
             </div>
 
             <div class="form-group">
-              <label for="contactTime">Hansı vaxt uyğundur?</label>
+              <label for="contactTime">Hansı vaxt uyğundur? *</label>
               <select id="contactTime" name="contactTime" required>
                 <option value="">Seç</option>
                 <option>Səhər</option>
@@ -889,7 +963,7 @@
           </div>
 
           <p class="privacy-note">
-            Məlumatların yalnız kurs detalları və qeydiyyat üçün istifadə olunacaq.
+            Formu doldurmaq qeydiyyat məcburiyyəti yaratmır. Məlumatların yalnız kurs detalları və qeydiyyat üçün istifadə olunacaq.
           </p>
         </div>
       </form>
