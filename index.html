@@ -17,7 +17,6 @@
 
 <body>
 
-  <!-- HEADER -->
   <header class="site-header">
     <div class="container header-inner">
       <a href="#" class="logo">
@@ -33,105 +32,90 @@
         <a href="#faq">FAQ</a>
       </nav>
 
-      <button class="btn btn-dark btn-small open-modal">Detalları göndər</button>
+      <button class="btn btn-dark btn-small open-modal" data-cta="Header">Detalları göndər</button>
     </div>
   </header>
 
-  <main>
+  <main id="mainPage">
 
-    <!-- HERO -->
     <section class="hero">
-      <div class="hero-bg-shape shape-one"></div>
-      <div class="hero-bg-shape shape-two"></div>
+      <div class="hero-shape shape-one"></div>
+      <div class="hero-shape shape-two"></div>
 
       <div class="container hero-shell">
 
         <div class="hero-pill">
-          <span class="dot"></span>
+          <span></span>
           Azərbaycanda “1 aya SMM öyrən” sözündən yorulanlar üçün
         </div>
 
         <h1>
-          4 ayda post paylaşan SMM yox,
-          <span>biznes nəticəsi yaradan Social Media Marketer</span> ol
+          4 ayda “nə paylaşım?” deyən SMM-dən,
+          <em>biznes üçün strategiya quran marketer-ə</em> çevril
         </h1>
 
         <p class="hero-subtitle">
-          SMM-i Canva, caption və reels səviyyəsində yox, real bizneslərə nəticə gətirən sistem kimi öyrən:
-          müştəri psixologiyası, kontent strategiyası, funnel, KPI, analitika, kreativ testlər, AI alətlər,
-          platforma fərqləri və real Azərbaycan case-ləri.
+          SMM-i sadəcə post, caption və reels kimi yox, biznes nəticəsi yaradan sistem kimi öyrən:
+          müştəri psixologiyası, kontent strategiyası, KPI, analitika, AI alətlər və real Azərbaycan case-ləri ilə.
         </p>
 
         <div class="hero-actions">
-          <button class="btn btn-primary open-modal">Detalları göndər</button>
-          <a href="#program" class="btn btn-white">Proqrama bax</a>
+          <button class="btn btn-primary open-modal" data-cta="Hero">Detalları göndər</button>
+          <a href="#program" class="btn btn-light">Proqrama bax</a>
         </div>
 
-        <p class="hero-small">
+        <p class="hero-note">
           Formu doldur, sənə proqram, paket detalları və qeydiyyat məlumatları göndərilsin.
         </p>
 
-        <div class="hero-visual">
-          <div class="browser-card">
-            <div class="browser-top">
-              <div class="browser-dots">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
+        <div class="hero-browser">
+          <div class="browser-top">
+            <div class="browser-dots">
+              <i></i><i></i><i></i>
+            </div>
+            <div class="browser-url">smm360.education</div>
+            <div class="browser-plus">+</div>
+          </div>
 
-              <div class="browser-url">
-                smm360.education
-              </div>
-
-              <div class="browser-icon">+</div>
+          <div class="browser-body">
+            <div class="video-box">
+              <div class="play-btn">▶</div>
+              <strong>VSL Video</strong>
+              <span>Bu videoya baxmadan qərar vermə</span>
             </div>
 
-            <div class="browser-content">
-              <div class="video-panel">
-                <div class="play-button">▶</div>
-                <div>
-                  <strong>VSL Video</strong>
-                  <span>Bu videoya baxmadan qərar vermə</span>
-                </div>
-              </div>
+            <div class="float-card float-1">
+              <small>Quiz</small>
+              <b>Hər dərs sonu</b>
+            </div>
 
-              <div class="floating-card card-a">
-                <span>Quiz</span>
-                <strong>Hər dərs sonu</strong>
-              </div>
+            <div class="float-card float-2">
+              <small>Case</small>
+              <b>Lokal bizneslər</b>
+            </div>
 
-              <div class="floating-card card-b">
-                <span>Case</span>
-                <strong>Lokal bizneslər</strong>
-              </div>
-
-              <div class="floating-card card-c">
-                <span>Final</span>
-                <strong>Portfolio project</strong>
-              </div>
+            <div class="float-card float-3">
+              <small>Final</small>
+              <b>Portfolio project</b>
             </div>
           </div>
         </div>
 
         <div class="hero-stats">
           <div>
-            <strong>4 ay</strong>
+            <b>4 ay</b>
             <span>dərin proqram</span>
           </div>
-
           <div>
-            <strong>2 gün</strong>
+            <b>2 gün</b>
             <span>şənbə & bazar</span>
           </div>
-
           <div>
-            <strong>3 saat</strong>
+            <b>3 saat</b>
             <span>hər canlı dərs</span>
           </div>
-
           <div>
-            <strong>360°</strong>
+            <b>360°</b>
             <span>strategiya + analitika</span>
           </div>
         </div>
@@ -139,9 +123,8 @@
       </div>
     </section>
 
-    <!-- MARQUEE / QUICK BAR -->
     <section class="quick-strip">
-      <div class="container quick-strip-inner">
+      <div class="container quick-inner">
         <span>Kahoot oyunları</span>
         <span>Self-learning</span>
         <span>Case-lər</span>
@@ -152,10 +135,8 @@
       </div>
     </section>
 
-    <!-- PROBLEM -->
     <section class="section problem-section" id="problem">
       <div class="container two-col">
-
         <div>
           <div class="section-kicker">Ay insan, bax...</div>
 
@@ -167,10 +148,10 @@
           <p class="lead">
             Azərbaycanda çox yerdə SMM hələ də belə öyrədilir:
             “Canva-da post hazırla, reels çək, caption yaz, kontent plan düzəlt.”
-            Amma real biznesdə danqadanq başqa suallar gəlir.
+            Amma real biznesə girəndə danqadanq başqa suallar gəlir.
           </p>
 
-          <button class="btn btn-primary open-modal">Detalları göndər</button>
+          <button class="btn btn-primary open-modal" data-cta="Problem">Detalları göndər</button>
         </div>
 
         <div class="problem-stack">
@@ -194,11 +175,42 @@
             <p>Niyə kontent ideyası var, amma strategiya yoxdur?</p>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- SOFT MANIFESTO -->
+    <section class="section before-after-section">
+      <div class="container">
+        <div class="section-heading center">
+          <div class="section-kicker center-kicker">Transformasiya</div>
+          <h2>Kursdan əvvəl və sonra fərq</h2>
+        </div>
+
+        <div class="before-after-grid">
+          <article class="ba-card before">
+            <h3>Kursdan əvvəl</h3>
+            <ul>
+              <li>Nə paylaşacağını random seçirsən</li>
+              <li>KPI-lar qarışıq gəlir</li>
+              <li>Müştərinin biznes problemini görmək çətindir</li>
+              <li>Report yazmaq və nəticə çıxarmaq çətindir</li>
+              <li>AI-dan sadəcə caption üçün istifadə edirsən</li>
+            </ul>
+          </article>
+
+          <article class="ba-card after">
+            <h3>Kursdan sonra</h3>
+            <ul>
+              <li>Kontenti məqsədə görə qurursan</li>
+              <li>Biznesi və auditoriyanı analiz edirsən</li>
+              <li>KPI seçə və izah edə bilirsən</li>
+              <li>Funnel düşünürsən</li>
+              <li>AI-dan research, strategy və report üçün istifadə edirsən</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section manifesto-section">
       <div class="container manifesto-card">
         <div class="manifesto-label">Əsas fikir</div>
@@ -220,15 +232,11 @@
       </div>
     </section>
 
-    <!-- ENEMY -->
     <section class="section enemy-section">
-      <div class="container two-col reverse-mobile">
-
+      <div class="container two-col">
         <div class="mini-ui-card">
           <div class="mini-ui-top">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
           </div>
 
           <div class="mini-ui-body">
@@ -256,18 +264,13 @@
             satış, güvən, lead, brend, fərqlənmə və daha yaxşı kommunikasiya.
           </p>
         </div>
-
       </div>
     </section>
 
-    <!-- STORY -->
     <section class="section story-section">
       <div class="container story-layout">
-
         <div class="story-photo-card">
-          <div class="story-avatar">
-            <span>Ş</span>
-          </div>
+          <div class="story-avatar">Ş</div>
 
           <div>
             <strong>Şamil Kazımlı</strong>
@@ -298,36 +301,17 @@
             həqiqətən biznesə dəyər qatan SMM olasan.
           </p>
 
-          <button class="btn btn-dark open-modal">Detalları göndər</button>
+          <button class="btn btn-dark open-modal" data-cta="Story">Detalları göndər</button>
         </div>
-
       </div>
     </section>
 
-    <!-- PROGRAM INTRO -->
-    <section class="section intro-section">
-      <div class="container center narrow">
-        <div class="section-kicker center-kicker">Tanış ol</div>
-
-        <h2>
-          SMM 360 — sosial medianı biznes, psixologiya və strategiya ilə öyrədən 4 aylıq proqram
-        </h2>
-
-        <p class="lead">
-          Bu kursun məqsədi sənə sadəcə məlumat vermək deyil.
-          Məqsəd səndə SMM düşüncə sistemi formalaşdırmaqdır.
-        </p>
-      </div>
-    </section>
-
-    <!-- METHOD -->
     <section class="section method-section" id="method">
       <div class="container">
-
         <div class="section-heading">
           <div>
-            <div class="section-kicker">Kursun fərqi</div>
-            <h2>3 əsas sütun</h2>
+            <div class="section-kicker">SMM 360 Metodu</div>
+            <h2>Anla → Araşdır → Qur → Test et → Ölç → Təkmilləşdir</h2>
           </div>
 
           <p>
@@ -362,14 +346,34 @@
             </p>
           </article>
         </div>
-
       </div>
     </section>
 
-    <!-- LEARNING EXPERIENCE -->
+    <section class="section deliverables-section">
+      <div class="container">
+        <div class="section-heading center">
+          <div class="section-kicker center-kicker">Nə əldə edəcəksən?</div>
+          <h2>Sadəcə dərs yox, real işlənə bilən materiallar</h2>
+          <p>
+            Kurs boyunca sənə praktik işdə istifadə edə biləcəyin template-lər, checklist-lər və framework-lər veriləcək.
+          </p>
+        </div>
+
+        <div class="deliverables-grid">
+          <div>Content Strategy Template</div>
+          <div>KPI & Report Template</div>
+          <div>Audience Research Checklist</div>
+          <div>AI Prompt Library</div>
+          <div>Creative Testing Sheet</div>
+          <div>Final Project Framework</div>
+          <div>Content Calendar Template</div>
+          <div>Case Analysis Framework</div>
+        </div>
+      </div>
+    </section>
+
     <section class="section learning-section">
       <div class="container learning-shell">
-
         <div class="learning-copy">
           <div class="section-kicker">Dərslər necə keçəcək?</div>
 
@@ -417,14 +421,11 @@
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- PROGRAM -->
     <section class="section program-section" id="program">
       <div class="container">
-
         <div class="section-heading center">
           <div class="section-kicker center-kicker">4 ayda nə öyrənəcəksən?</div>
           <h2>Proqram xəritəsi</h2>
@@ -435,7 +436,6 @@
         </div>
 
         <div class="program-grid">
-
           <article class="month-card">
             <div class="month-badge">Ay 1</div>
             <h3>Marketinq düşüncəsi, biznes və müştəri psixologiyası</h3>
@@ -487,20 +487,16 @@
               <li>Final project və təqdimat</li>
             </ul>
           </article>
-
         </div>
 
         <div class="center section-cta">
-          <button class="btn btn-primary open-modal">Detalları göndər</button>
+          <button class="btn btn-primary open-modal" data-cta="Program">Tam proqramı göndər</button>
         </div>
-
       </div>
     </section>
 
-    <!-- ASSESSMENT -->
     <section class="section assessment-section">
       <div class="container assessment-shell">
-
         <div>
           <div class="section-kicker">Burada “sertifikat üçün gəl-get” yoxdur</div>
 
@@ -524,14 +520,11 @@
           <span>Final imtahan</span>
           <span>Final project</span>
         </div>
-
       </div>
     </section>
 
-    <!-- WHO -->
     <section class="section who-section">
       <div class="container who-grid">
-
         <article class="who-card for-card">
           <div class="card-label">Bu proqram sənin üçündür</div>
           <h2>Əgər...</h2>
@@ -553,19 +546,16 @@
           <ul>
             <li>1 aya “peşəkar olum” düşüncəsindəsənsə</li>
             <li>Sadəcə sertifikat istəyirsənsə</li>
-            <li>Tapşırıq etmədən nəticə gözləyirsənsə</li>
-            <li>SMM-i sadəcə post dizaynı kimi görürsənsə</li>
-            <li>Dərsə qatılmadan hər şey hazır verilsin istəyirsənsə</li>
+            <li>Tapşırıq görəndə qaçırsansa</li>
+            <li>SMM-i sadəcə reels və post dizaynı kimi görürsənsə</li>
+            <li>“Hazır kontent plan verin, mən paylaşım” düşüncəsindəsənsə</li>
           </ul>
         </article>
-
       </div>
     </section>
 
-    <!-- OUTCOME -->
     <section class="section outcome-section">
       <div class="container outcome-card center">
-
         <div class="section-kicker center-kicker">4 ayın sonunda</div>
 
         <h2>
@@ -578,15 +568,12 @@
           KPI seçməyi, report yazmağı, platformalara görə fərqli düşünməyi və AI-dan sistemli istifadə etməyi bacaracaqsan.
         </p>
 
-        <button class="btn btn-dark open-modal">Detalları göndər</button>
-
+        <button class="btn btn-dark open-modal" data-cta="Outcome">Mənə proqramı göndər</button>
       </div>
     </section>
 
-    <!-- PACKAGES -->
     <section class="section packages-section" id="packages">
       <div class="container">
-
         <div class="section-heading center">
           <div class="section-kicker center-kicker">İki seçim var</div>
           <h2>Sənə uyğun proqramı seç</h2>
@@ -596,7 +583,6 @@
         </div>
 
         <div class="packages-grid">
-
           <article class="package-card">
             <div class="package-top">
               <div class="package-icon">C</div>
@@ -620,8 +606,13 @@
               <li>Final project</li>
             </ul>
 
+            <div class="package-fit">
+              <b>Sənə uyğundur, əgər:</b>
+              <p>Canlı dərslərdə aktiv iştirak edə bilirsənsə və əsas proqramla inkişaf etmək istəyirsənsə.</p>
+            </div>
+
             <button class="btn btn-white-bordered full open-modal" data-package="Core Program">
-              Detalları göndər
+              Paket detalları gəlsin
             </button>
           </article>
 
@@ -648,27 +639,27 @@
               <li>Əlavə feedback sessiyaları</li>
             </ul>
 
+            <div class="package-fit">
+              <b>Sənə uyğundur, əgər:</b>
+              <p>Video qeydlər, CV, portfolio və kursdan sonra əlavə mentorluq istəyirsənsə.</p>
+            </div>
+
             <button class="btn btn-primary full open-modal" data-package="Mentorship Program">
-              Detalları göndər
+              Paket detalları gəlsin
             </button>
           </article>
-
         </div>
-
       </div>
     </section>
 
-    <!-- FAQ -->
     <section class="section faq-section" id="faq">
       <div class="container narrow">
-
         <div class="section-heading center">
           <div class="section-kicker center-kicker">Suallar</div>
           <h2>Tez-tez verilən suallar</h2>
         </div>
 
         <div class="faq-list">
-
           <div class="faq-item">
             <button class="faq-question">
               <span>Bu kurs sıfırdan başlayanlar üçündür?</span>
@@ -728,13 +719,10 @@
               <p>İş zəmanəti verilmir. Amma sənə real bacarıq, portfolio project, CV dəstəyi, interview hazırlığı və mentorluq imkanı verilir.</p>
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
 
-    <!-- FINAL CTA -->
     <section class="section final-cta">
       <div class="container final-cta-card center">
         <h2>SMM-i səthi yox, ciddi öyrənmək istəyirsənsə, indi başla.</h2>
@@ -744,13 +732,56 @@
           kontenti məqsədlə yaradan və strategiya quran SMM azdır.
         </p>
 
-        <button class="btn btn-primary open-modal">Detalları göndər</button>
+        <button class="btn btn-primary open-modal" data-cta="Final">Detalları göndər</button>
       </div>
     </section>
 
   </main>
 
-  <!-- FOOTER -->
+  <section class="thank-you-page" id="thankYouPage">
+    <div class="container thank-you-shell">
+      <div class="thank-you-pill">Müraciətin qəbul edildi</div>
+
+      <h1>İndi bu qısa videoya bax</h1>
+
+      <p>
+        Sənə proqram və paket detalları göndəriləcək. Bu videoda isə kursun kimlər üçün uyğun olduğunu
+        və 4 ay ərzində necə işlədiyini izah edirəm.
+      </p>
+
+      <div class="thank-video">
+        <div class="play-btn">▶</div>
+        <strong>Thank You Video</strong>
+        <span>Burada video yerləşəcək</span>
+      </div>
+
+      <div class="next-steps">
+        <h2>İndi nə olacaq?</h2>
+
+        <div class="next-grid">
+          <div>
+            <b>1</b>
+            <span>Məlumatların bizə çatdı</span>
+          </div>
+          <div>
+            <b>2</b>
+            <span>Proqram və paket detalları sənə göndəriləcək</span>
+          </div>
+          <div>
+            <b>3</b>
+            <span>Uyğun olarsa, qısa konsultasiya ediləcək</span>
+          </div>
+          <div>
+            <b>4</b>
+            <span>Qeydiyyat addımları izah olunacaq</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary open-modal" data-cta="Thank You">Proqramı əldə et</button>
+    </div>
+  </section>
+
   <footer class="footer">
     <div class="container footer-inner">
       <a href="#" class="logo footer-logo">
@@ -760,75 +791,108 @@
 
       <p>© 2026 SMM 360. Bütün hüquqlar qorunur.</p>
 
-      <button class="footer-cta open-modal">Detalları göndər</button>
+      <button class="footer-cta open-modal" data-cta="Footer">Detalları göndər</button>
     </div>
   </footer>
 
-  <!-- MOBILE STICKY CTA -->
   <div class="mobile-sticky">
-    <button class="btn btn-primary full open-modal">Detalları göndər</button>
+    <button class="btn btn-primary full open-modal" data-cta="Mobile Sticky">Detalları göndər</button>
   </div>
 
-  <!-- MODAL -->
   <div class="modal-overlay" id="leadModal">
     <div class="modal">
       <button class="modal-close" id="closeModal" aria-label="Bağla">×</button>
 
-      <div class="modal-header">
-        <div class="modal-pill">SMM 360</div>
-        <h2>Proqramı və detalları əldə et</h2>
-        <p>
-          Formu doldur, sənə SMM 360 proqramı, paket detalları və qeydiyyat məlumatları göndərilsin.
-        </p>
+      <div class="modal-progress">
+        <div class="progress-info">
+          <span id="stepText">Addım 1 / 2</span>
+          <span id="progressPercent">50%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
       </div>
 
       <form id="leadForm" class="lead-form">
         <input type="hidden" id="selectedPackage" name="selectedPackage" value="Ümumi maraq">
+        <input type="hidden" id="selectedGoal" name="selectedGoal" value="">
+        <input type="hidden" id="ctaSource" name="ctaSource" value="">
 
-        <div class="form-group">
-          <label for="name">Ad və soyad</label>
-          <input type="text" id="name" name="name" placeholder="Məsələn: Şamil Kazımlı" required>
+        <div class="form-step active" data-step="1">
+          <div class="modal-header">
+            <div class="modal-pill">SMM 360</div>
+            <h2>Sənə ən uyğun proqramı göndərək</h2>
+            <p>Bircə sual: SMM-i niyə öyrənmək istəyirsən?</p>
+          </div>
+
+          <div class="goal-grid">
+            <button type="button" class="goal-option" data-goal="İş tapmaq istəyirəm">İş tapmaq istəyirəm</button>
+            <button type="button" class="goal-option" data-goal="Freelance başlamaq istəyirəm">Freelance başlamaq istəyirəm</button>
+            <button type="button" class="goal-option" data-goal="Biznesimin sosial mediasını böyütmək istəyirəm">Biznesimi böyütmək istəyirəm</button>
+            <button type="button" class="goal-option" data-goal="SMM-də səviyyə artırmaq istəyirəm">SMM-də səviyyə artırmaq istəyirəm</button>
+            <button type="button" class="goal-option" data-goal="Şəxsi brend qurmaq istəyirəm">Şəxsi brend qurmaq istəyirəm</button>
+            <button type="button" class="goal-option" data-goal="Sadəcə proqramla maraqlanıram">Sadəcə maraqlanıram</button>
+          </div>
+
+          <button type="button" class="btn btn-primary full" id="nextStepBtn" disabled>Davam et</button>
         </div>
 
-        <div class="form-group">
-          <label for="phone">Telefon nömrəsi</label>
-          <input type="tel" id="phone" name="phone" placeholder="+994 XX XXX XX XX" required>
+        <div class="form-step" data-step="2">
+          <div class="modal-header">
+            <div class="modal-pill">Son addım</div>
+            <h2>Detalları hara göndərək?</h2>
+            <p>Məlumatlarını yaz, proqram və paket detalları sənə göndərilsin.</p>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Ad və soyad</label>
+            <input type="text" id="name" name="name" placeholder="Məsələn: Şamil Kazımlı" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Telefon nömrəsi</label>
+            <input type="tel" id="phone" name="phone" placeholder="+994 XX XXX XX XX" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="mail@example.com" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contactMethod">Səninlə necə əlaqə saxlayaq?</label>
+              <select id="contactMethod" name="contactMethod" required>
+                <option value="">Seç</option>
+                <option>WhatsApp</option>
+                <option>Zəng</option>
+                <option>Email</option>
+                <option>Telegram</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="contactTime">Hansı vaxt uyğundur?</label>
+              <select id="contactTime" name="contactTime" required>
+                <option value="">Seç</option>
+                <option>Səhər</option>
+                <option>Günorta</option>
+                <option>Axşam</option>
+                <option>Fərqi yoxdur</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-light" id="backStepBtn">Geri</button>
+            <button type="submit" class="btn btn-primary">Detalları göndər</button>
+          </div>
+
+          <p class="privacy-note">
+            Məlumatların yalnız kurs detalları və qeydiyyat üçün istifadə olunacaq.
+          </p>
         </div>
-
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="mail@example.com" required>
-        </div>
-
-        <div class="form-group">
-          <label for="status">Hazırkı statusun</label>
-          <select id="status" name="status" required>
-            <option value="">Seç</option>
-            <option>SMM-ə yeni başlayıram</option>
-            <option>Artıq SMM işləyirəm</option>
-            <option>Freelancer olmaq istəyirəm</option>
-            <option>Biznes sahibiyəm</option>
-            <option>Şəxsi brendimi böyütmək istəyirəm</option>
-            <option>Sadəcə maraqlanıram</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="goal">SMM-i öyrənməkdə əsas məqsədin nədir?</label>
-          <textarea id="goal" name="goal" rows="4" placeholder="Məsələn: iş tapmaq, freelance başlamaq, biznesimi böyütmək..."></textarea>
-        </div>
-
-        <button type="submit" class="btn btn-primary full">Detalları göndər</button>
-
-        <p class="privacy-note">
-          Məlumatların yalnız kurs detalları və qeydiyyat üçün istifadə olunacaq.
-        </p>
       </form>
-
-      <div class="success-message" id="successMessage">
-        <h3>Məlumatların qəbul edildi!</h3>
-        <p>Sənə proqram və paket detalları göndəriləcək.</p>
-      </div>
     </div>
   </div>
 
