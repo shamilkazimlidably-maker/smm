@@ -234,7 +234,7 @@ function getYouTubeEmbedUrl(url) {
 
   videoId = videoId.split("?")[0].split("&")[0];
 
- return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1`;
+ return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&playsinline=1&rel=0&modestbranding=1&enablejsapi=1`;
 }
 
 function initYouTubeVideos() {
