@@ -11,6 +11,7 @@ const selectedPackageInput = document.getElementById("selectedPackage");
 const selectedGoalInput = document.getElementById("selectedGoal");
 const ctaSourceInput = document.getElementById("ctaSource");
 
+const selectedPackageText = document.getElementById("selectedPackageText");
 const goalOptions = document.querySelectorAll(".goal-option");
 
 const stepText = document.getElementById("stepText");
@@ -19,6 +20,8 @@ const progressFill = document.getElementById("progressFill");
 
 const mainPage = document.getElementById("mainPage");
 const thankYouPage = document.getElementById("thankYouPage");
+
+const phoneInput = document.getElementById("phone");
 
 let currentStep = 1;
 
@@ -47,10 +50,18 @@ function openModal(packageName = "Ümumi maraq", ctaSource = "Unknown") {
   selectedPackageInput.value = packageName;
   ctaSourceInput.value = ctaSource;
 
+  if (selectedPackageText) {
+    selectedPackageText.textContent = packageName;
+  }
+
   modal.classList.add("active");
   document.body.classList.add("modal-open");
 
   setStep(1);
+
+  if (phoneInput && !phoneInput.value.trim()) {
+    phoneInput.value = "+994 ";
+  }
 }
 
 function closeModal() {
@@ -67,6 +78,10 @@ function resetFormState() {
   goalOptions.forEach((option) => {
     option.classList.remove("active");
   });
+
+  if (phoneInput) {
+    phoneInput.value = "+994 ";
+  }
 
   setStep(1);
 }
@@ -107,6 +122,7 @@ goalOptions.forEach((option) => {
 
 nextStepBtn.addEventListener("click", () => {
   if (!selectedGoalInput.value) {
+    alert("Zəhmət olmasa məqsədini seç.");
     return;
   }
 
@@ -116,6 +132,32 @@ nextStepBtn.addEventListener("click", () => {
 backStepBtn.addEventListener("click", () => {
   setStep(1);
 });
+
+/* Phone input: +994 həmişə qalsın */
+if (phoneInput) {
+  phoneInput.addEventListener("focus", () => {
+    if (!phoneInput.value.startsWith("+994")) {
+      phoneInput.value = "+994 ";
+    }
+  });
+
+  phoneInput.addEventListener("input", () => {
+    if (!phoneInput.value.startsWith("+994")) {
+      phoneInput.value = "+994 ";
+    }
+  });
+
+  phoneInput.addEventListener("keydown", (event) => {
+    const cursorPosition = phoneInput.selectionStart;
+
+    if (
+      cursorPosition <= 5 &&
+      (event.key === "Backspace" || event.key === "Delete")
+    ) {
+      event.preventDefault();
+    }
+  });
+}
 
 /* FAQ accordion */
 const faqItems = document.querySelectorAll(".faq-item");
@@ -158,9 +200,105 @@ navLinks.forEach((link) => {
   });
 });
 
+/* YouTube embed */
+function getYouTubeEmbedUrl(url) {
+  if (!url || url === "YOUTUBE_LINK_HERE") {
+    return null;
+  }
+
+  let videoId = "";
+
+  try {
+    const parsedUrl = new URL(url);
+
+    if (parsedUrl.hostname.includes("youtube.com")) {
+      if (parsedUrl.pathname.includes("/shorts/")) {
+        videoId = parsedUrl.pathname.split("/shorts/")[1];
+      } else if (parsedUrl.pathname.includes("/embed/")) {
+        videoId = parsedUrl.pathname.split("/embed/")[1];
+      } else {
+        videoId = parsedUrl.searchParams.get("v");
+      }
+    }
+
+    if (parsedUrl.hostname.includes("youtu.be")) {
+      videoId = parsedUrl.pathname.replace("/", "");
+    }
+  } catch (error) {
+    return null;
+  }
+
+  if (!videoId) {
+    return null;
+  }
+
+  videoId = videoId.split("?")[0].split("&")[0];
+
+  return `https://www.youtube.com/embed/${videoId}`;
+}
+
+function initYouTubeVideos() {
+  const videoBlocks = document.querySelectorAll(".js-youtube-video");
+
+  videoBlocks.forEach((block) => {
+    const youtubeUrl = block.dataset.youtubeUrl;
+    const embedUrl = getYouTubeEmbedUrl(youtubeUrl);
+
+    if (!embedUrl) {
+      return;
+    }
+
+    block.classList.add("has-video");
+
+    block.innerHTML = `
+      <iframe
+        src="${embedUrl}"
+        title="SMM 360 Video"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    `;
+  });
+}
+
+initYouTubeVideos();
+
+/* Strong validation */
+function validateStepTwo() {
+  const requiredFields = leadForm.querySelectorAll('.form-step[data-step="2"] [required]');
+
+  for (const field of requiredFields) {
+    if (!field.value.trim()) {
+      field.focus();
+      alert("Zəhmət olmasa bütün məcburi xanaları doldur.");
+      return false;
+    }
+  }
+
+  const digitsOnly = phoneInput.value.replace(/\D/g, "");
+
+  if (!phoneInput.value.startsWith("+994") || digitsOnly.length < 12) {
+    phoneInput.focus();
+    alert("Zəhmət olmasa Azərbaycan nömrəsini düzgün yaz: +994 XX XXX XX XX");
+    return false;
+  }
+
+  return true;
+}
+
 /* Lead form submit */
 leadForm.addEventListener("submit", async (event) => {
   event.preventDefault();
+
+  if (!selectedGoalInput.value) {
+    setStep(1);
+    alert("Zəhmət olmasa məqsədini seç.");
+    return;
+  }
+
+  if (!validateStepTwo()) {
+    return;
+  }
 
   const submitButton = leadForm.querySelector('button[type="submit"]');
 
@@ -194,12 +332,10 @@ leadForm.addEventListener("submit", async (event) => {
       body: JSON.stringify(leadData)
     });
 
-    Variantlar:
-    - Make.com webhook
-    - Zapier webhook
-    - Google Sheets webhook
-    - Telegram bot endpoint
-    - CRM endpoint
+    Tracking üçün nümunələr:
+    - Meta Pixel Lead event
+    - GA4 form_submit event
+    - TikTok Pixel CompleteRegistration event
   */
 
   setTimeout(() => {
@@ -207,11 +343,13 @@ leadForm.addEventListener("submit", async (event) => {
 
     mainPage.style.display = "none";
     thankYouPage.classList.add("active");
+
     document.body.classList.add("thank-you-active");
+    document.body.style.overflowY = "auto";
 
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
+      behavior: "auto"
     });
 
     submitButton.disabled = false;
