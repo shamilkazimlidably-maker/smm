@@ -1,14 +1,56 @@
 const modal = document.getElementById("leadModal");
 const closeModalBtn = document.getElementById("closeModal");
 const openModalBtns = document.querySelectorAll(".open-modal");
-const leadForm = document.getElementById("leadForm");
-const successMessage = document.getElementById("successMessage");
-const selectedPackageInput = document.getElementById("selectedPackage");
 
-function openModal(packageName = "Ümumi maraq") {
+const leadForm = document.getElementById("leadForm");
+const formSteps = document.querySelectorAll(".form-step");
+const nextStepBtn = document.getElementById("nextStepBtn");
+const backStepBtn = document.getElementById("backStepBtn");
+
+const selectedPackageInput = document.getElementById("selectedPackage");
+const selectedGoalInput = document.getElementById("selectedGoal");
+const ctaSourceInput = document.getElementById("ctaSource");
+
+const goalOptions = document.querySelectorAll(".goal-option");
+
+const stepText = document.getElementById("stepText");
+const progressPercent = document.getElementById("progressPercent");
+const progressFill = document.getElementById("progressFill");
+
+const mainPage = document.getElementById("mainPage");
+const thankYouPage = document.getElementById("thankYouPage");
+
+let currentStep = 1;
+
+function setStep(step) {
+  currentStep = step;
+
+  formSteps.forEach((item) => {
+    const itemStep = Number(item.dataset.step);
+    item.classList.toggle("active", itemStep === currentStep);
+  });
+
+  if (currentStep === 1) {
+    stepText.textContent = "Addım 1 / 2";
+    progressPercent.textContent = "50%";
+    progressFill.style.width = "50%";
+  }
+
+  if (currentStep === 2) {
+    stepText.textContent = "Addım 2 / 2";
+    progressPercent.textContent = "100%";
+    progressFill.style.width = "100%";
+  }
+}
+
+function openModal(packageName = "Ümumi maraq", ctaSource = "Unknown") {
   selectedPackageInput.value = packageName;
+  ctaSourceInput.value = ctaSource;
+
   modal.classList.add("active");
   document.body.classList.add("modal-open");
+
+  setStep(1);
 }
 
 function closeModal() {
@@ -16,10 +58,25 @@ function closeModal() {
   document.body.classList.remove("modal-open");
 }
 
+function resetFormState() {
+  leadForm.reset();
+
+  selectedGoalInput.value = "";
+  nextStepBtn.disabled = true;
+
+  goalOptions.forEach((option) => {
+    option.classList.remove("active");
+  });
+
+  setStep(1);
+}
+
 openModalBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     const packageName = btn.dataset.package || "Ümumi maraq";
-    openModal(packageName);
+    const ctaSource = btn.dataset.cta || "Unknown";
+
+    openModal(packageName, ctaSource);
   });
 });
 
@@ -35,6 +92,29 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && modal.classList.contains("active")) {
     closeModal();
   }
+});
+
+goalOptions.forEach((option) => {
+  option.addEventListener("click", () => {
+    goalOptions.forEach((item) => item.classList.remove("active"));
+
+    option.classList.add("active");
+    selectedGoalInput.value = option.dataset.goal;
+
+    nextStepBtn.disabled = false;
+  });
+});
+
+nextStepBtn.addEventListener("click", () => {
+  if (!selectedGoalInput.value) {
+    return;
+  }
+
+  setStep(2);
+});
+
+backStepBtn.addEventListener("click", () => {
+  setStep(1);
 });
 
 /* FAQ accordion */
@@ -56,7 +136,7 @@ faqItems.forEach((item) => {
   });
 });
 
-/* Smooth close for same-page anchor nav on mobile */
+/* Smooth anchors */
 const navLinks = document.querySelectorAll('a[href^="#"]');
 
 navLinks.forEach((link) => {
@@ -83,6 +163,7 @@ leadForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   const submitButton = leadForm.querySelector('button[type="submit"]');
+
   submitButton.disabled = true;
   submitButton.textContent = "Göndərilir...";
 
@@ -90,11 +171,13 @@ leadForm.addEventListener("submit", async (event) => {
 
   const leadData = {
     package: formData.get("selectedPackage"),
+    goal: formData.get("selectedGoal"),
+    ctaSource: formData.get("ctaSource"),
     name: formData.get("name"),
     phone: formData.get("phone"),
     email: formData.get("email"),
-    status: formData.get("status"),
-    goal: formData.get("goal"),
+    contactMethod: formData.get("contactMethod"),
+    contactTime: formData.get("contactTime"),
     createdAt: new Date().toISOString()
   };
 
@@ -120,17 +203,20 @@ leadForm.addEventListener("submit", async (event) => {
   */
 
   setTimeout(() => {
-    leadForm.style.display = "none";
-    successMessage.style.display = "block";
+    closeModal();
+
+    mainPage.style.display = "none";
+    thankYouPage.classList.add("active");
+    document.body.classList.add("thank-you-active");
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
 
     submitButton.disabled = false;
     submitButton.textContent = "Detalları göndər";
-  }, 650);
 
-  setTimeout(() => {
-    leadForm.reset();
-    leadForm.style.display = "grid";
-    successMessage.style.display = "none";
-    closeModal();
-  }, 3200);
+    resetFormState();
+  }, 700);
 });
