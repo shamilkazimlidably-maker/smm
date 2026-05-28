@@ -1,10 +1,5 @@
-// ======================================================
 // SMM Akademiyası Landing Page — app.js
-// Modal, 2-step lead form, package select,
-// thank-you page, FAQ, YouTube play, parallax, reveal
-// ======================================================
 
-// ---------- DOM ELEMENTS ----------
 const modal = document.getElementById("leadModal");
 const closeModalBtn = document.getElementById("closeModal");
 const openModalBtns = document.querySelectorAll(".open-modal");
@@ -17,7 +12,6 @@ const backStepBtn = document.getElementById("backStepBtn");
 const selectedPackageInput = document.getElementById("selectedPackage");
 const selectedGoalInput = document.getElementById("selectedGoal");
 const ctaSourceInput = document.getElementById("ctaSource");
-
 const selectedPackageText = document.getElementById("selectedPackageText");
 const goalOptions = document.querySelectorAll(".goal-option");
 
@@ -27,12 +21,11 @@ const progressFill = document.getElementById("progressFill");
 
 const mainPage = document.getElementById("mainPage");
 const thankYouPage = document.getElementById("thankYouPage");
-
 const phoneInput = document.getElementById("phone");
 
 let currentStep = 1;
 
-// ---------- FORM STEP HANDLER ----------
+// ---------- STEP CONTROL ----------
 function setStep(step) {
   currentStep = step;
 
@@ -54,21 +47,13 @@ function setStep(step) {
   }
 }
 
-// ---------- MODAL OPEN / CLOSE ----------
+// ---------- MODAL ----------
 function openModal(packageName = "Ümumi maraq", ctaSource = "Unknown") {
   if (!modal) return;
 
-  if (selectedPackageInput) {
-    selectedPackageInput.value = packageName;
-  }
-
-  if (ctaSourceInput) {
-    ctaSourceInput.value = ctaSource;
-  }
-
-  if (selectedPackageText) {
-    selectedPackageText.textContent = packageName;
-  }
+  if (selectedPackageInput) selectedPackageInput.value = packageName;
+  if (ctaSourceInput) ctaSourceInput.value = ctaSource;
+  if (selectedPackageText) selectedPackageText.textContent = packageName;
 
   modal.classList.add("active");
   document.body.classList.add("modal-open");
@@ -114,7 +99,7 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-// ---------- GOAL SELECTION ----------
+// ---------- GOAL SELECT ----------
 goalOptions.forEach((option) => {
   option.addEventListener("click", () => {
     goalOptions.forEach((item) => item.classList.remove("selected"));
@@ -136,9 +121,7 @@ goalOptions.forEach((option) => {
 // ---------- NEXT / BACK ----------
 if (nextStepBtn) {
   nextStepBtn.addEventListener("click", () => {
-    if (!selectedGoalInput || !selectedGoalInput.value.trim()) {
-      return;
-    }
+    if (!selectedGoalInput || !selectedGoalInput.value.trim()) return;
 
     setStep(2);
   });
@@ -356,7 +339,7 @@ anchorLinks.forEach((link) => {
 
 // ---------- REVEAL ON SCROLL ----------
 const revealItems = document.querySelectorAll(
-  ".section, .problem-card, .persona-card, .method-card, .month-card, .package-card, .ba-card"
+  ".section, .problem-card, .persona-card, .method-card, .month-card, .package-card, .ba-card, .testimonial-grid article"
 );
 
 const revealObserver = new IntersectionObserver(
