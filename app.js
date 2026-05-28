@@ -1,3 +1,10 @@
+// ======================================================
+// SMM Academy Landing Page — app.js
+// Functionality: modal, 2-step form, package select,
+// thank-you page, FAQ accordion, VSL play, parallax
+// ======================================================
+
+// ---------- DOM ELEMENTS ----------
 const modal = document.getElementById("leadModal");
 const closeModalBtn = document.getElementById("closeModal");
 const openModalBtns = document.querySelectorAll(".open-modal");
@@ -25,6 +32,7 @@ const phoneInput = document.getElementById("phone");
 
 let currentStep = 1;
 
+// ---------- FORM STEP HANDLER ----------
 function setStep(step) {
   currentStep = step;
 
@@ -34,21 +42,29 @@ function setStep(step) {
   });
 
   if (currentStep === 1) {
-    stepText.textContent = "Addım 1 / 2";
-    progressPercent.textContent = "50%";
-    progressFill.style.width = "50%";
+    if (stepText) stepText.textContent = "Addım 1 / 2";
+    if (progressPercent) progressPercent.textContent = "50%";
+    if (progressFill) progressFill.style.width = "50%";
   }
 
   if (currentStep === 2) {
-    stepText.textContent = "Addım 2 / 2";
-    progressPercent.textContent = "100%";
-    progressFill.style.width = "100%";
+    if (stepText) stepText.textContent = "Addım 2 / 2";
+    if (progressPercent) progressPercent.textContent = "100%";
+    if (progressFill) progressFill.style.width = "100%";
   }
 }
 
+// ---------- MODAL OPEN / CLOSE ----------
 function openModal(packageName = "Ümumi maraq", ctaSource = "Unknown") {
-  selectedPackageInput.value = packageName;
-  ctaSourceInput.value = ctaSource;
+  if (!modal) return;
+
+  if (selectedPackageInput) {
+    selectedPackageInput.value = packageName;
+  }
+
+  if (ctaSourceInput) {
+    ctaSourceInput.value = ctaSource;
+  }
 
   if (selectedPackageText) {
     selectedPackageText.textContent = packageName;
@@ -65,27 +81,13 @@ function openModal(packageName = "Ümumi maraq", ctaSource = "Unknown") {
 }
 
 function closeModal() {
+  if (!modal) return;
+
   modal.classList.remove("active");
   document.body.classList.remove("modal-open");
 }
 
-function resetFormState() {
-  leadForm.reset();
-
-  selectedGoalInput.value = "";
-  nextStepBtn.disabled = true;
-
-  goalOptions.forEach((option) => {
-    option.classList.remove("active");
-  });
-
-  if (phoneInput) {
-    phoneInput.value = "+994 ";
-  }
-
-  setStep(1);
-}
-
+// Open modal buttons
 openModalBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     const packageName = btn.dataset.package || "Ümumi maraq";
@@ -95,48 +97,67 @@ openModalBtns.forEach((btn) => {
   });
 });
 
-closeModalBtn.addEventListener("click", closeModal);
+// Close modal button
+if (closeModalBtn) {
+  closeModalBtn.addEventListener("click", closeModal);
+}
 
-modal.addEventListener("click", (event) => {
-  if (event.target === modal) {
-    closeModal();
-  }
-});
+// Close when clicking outside modal
+if (modal) {
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+}
 
+// Close with Escape
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && modal.classList.contains("active")) {
+  if (event.key === "Escape" && modal && modal.classList.contains("active")) {
     closeModal();
   }
 });
 
+// ---------- GOAL SELECTION ----------
 goalOptions.forEach((option) => {
   option.addEventListener("click", () => {
-    goalOptions.forEach((item) => item.classList.remove("active"));
+    goalOptions.forEach((item) => item.classList.remove("selected"));
 
-    option.classList.add("active");
-    selectedGoalInput.value = option.dataset.goal;
+    option.classList.add("selected");
 
-    nextStepBtn.disabled = false;
+    const goal = option.dataset.goal || option.textContent.trim();
+
+    if (selectedGoalInput) {
+      selectedGoalInput.value = goal;
+    }
+
+    if (nextStepBtn) {
+      nextStepBtn.disabled = false;
+    }
   });
 });
 
-nextStepBtn.addEventListener("click", () => {
-  if (!selectedGoalInput.value) {
-    alert("Zəhmət olmasa məqsədini seç.");
-    return;
-  }
+// ---------- NEXT / BACK BUTTONS ----------
+if (nextStepBtn) {
+  nextStepBtn.addEventListener("click", () => {
+    if (!selectedGoalInput || !selectedGoalInput.value.trim()) {
+      return;
+    }
 
-  setStep(2);
-});
+    setStep(2);
+  });
+}
 
-backStepBtn.addEventListener("click", () => {
-  setStep(1);
-});
+if (backStepBtn) {
+  backStepBtn.addEventListener("click", () => {
+    setStep(1);
+  });
+}
 
-/* Phone input: +994 həmişə qalsın */
+// ---------- AZERBAIJAN PHONE INPUT HELP ----------
 if (phoneInput) {
   phoneInput.addEventListener("focus", () => {
-    if (!phoneInput.value.startsWith("+994")) {
+    if (!phoneInput.value.trim()) {
       phoneInput.value = "+994 ";
     }
   });
@@ -146,31 +167,78 @@ if (phoneInput) {
       phoneInput.value = "+994 ";
     }
   });
+}
 
-  phoneInput.addEventListener("keydown", (event) => {
-    const cursorPosition = phoneInput.selectionStart;
+// ---------- FORM SUBMIT ----------
+if (leadForm) {
+  leadForm.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-    if (
-      cursorPosition <= 5 &&
-      (event.key === "Backspace" || event.key === "Delete")
-    ) {
-      event.preventDefault();
+    const formData = new FormData(leadForm);
+
+    const leadData = {
+      selectedPackage: formData.get("selectedPackage"),
+      selectedGoal: formData.get("selectedGoal"),
+      ctaSource: formData.get("ctaSource"),
+      name: formData.get("name"),
+      phone: formData.get("phone"),
+      email: formData.get("email"),
+      contactMethod: formData.get("contactMethod"),
+      contactTime: formData.get("contactTime"),
+      submittedAt: new Date().toISOString()
+    };
+
+    console.log("SMM Academy Lead:", leadData);
+
+    // Optional: Save lead locally for testing
+    localStorage.setItem("smmAcademyLead", JSON.stringify(leadData));
+
+    closeModal();
+
+    if (mainPage && thankYouPage) {
+      mainPage.style.display = "none";
+      thankYouPage.classList.add("active");
+      document.body.classList.add("thank-you-active");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    leadForm.reset();
+
+    if (selectedPackageInput) selectedPackageInput.value = "Ümumi maraq";
+    if (selectedGoalInput) selectedGoalInput.value = "";
+    if (ctaSourceInput) ctaSourceInput.value = "";
+    if (selectedPackageText) selectedPackageText.textContent = "Ümumi maraq";
+
+    goalOptions.forEach((item) => item.classList.remove("selected"));
+
+    if (nextStepBtn) {
+      nextStepBtn.disabled = true;
+    }
+
+    setStep(1);
+
+    if (phoneInput) {
+      phoneInput.value = "+994 ";
     }
   });
 }
 
-/* FAQ accordion */
+// ---------- FAQ ACCORDION ----------
 const faqItems = document.querySelectorAll(".faq-item");
 
 faqItems.forEach((item) => {
   const question = item.querySelector(".faq-question");
 
+  if (!question) return;
+
   question.addEventListener("click", () => {
     const isActive = item.classList.contains("active");
 
-    faqItems.forEach((faq) => {
-      faq.classList.remove("active");
-    });
+    faqItems.forEach((faq) => faq.classList.remove("active"));
 
     if (!isActive) {
       item.classList.add("active");
@@ -178,33 +246,11 @@ faqItems.forEach((item) => {
   });
 });
 
-/* Smooth anchors */
-const navLinks = document.querySelectorAll('a[href^="#"]');
+// ---------- YOUTUBE VIDEO CLICK-TO-PLAY ----------
+const youtubeBoxes = document.querySelectorAll(".js-youtube-video");
 
-navLinks.forEach((link) => {
-  link.addEventListener("click", (event) => {
-    const href = link.getAttribute("href");
-
-    if (href.length > 1) {
-      const target = document.querySelector(href);
-
-      if (target) {
-        event.preventDefault();
-
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }
-    }
-  });
-});
-
-/* YouTube embed */
 function getYouTubeEmbedUrl(url) {
-  if (!url || url === "YOUTUBE_LINK_HERE") {
-    return null;
-  }
+  if (!url) return "";
 
   let videoId = "";
 
@@ -212,149 +258,149 @@ function getYouTubeEmbedUrl(url) {
     const parsedUrl = new URL(url);
 
     if (parsedUrl.hostname.includes("youtube.com")) {
-      if (parsedUrl.pathname.includes("/shorts/")) {
-        videoId = parsedUrl.pathname.split("/shorts/")[1];
-      } else if (parsedUrl.pathname.includes("/embed/")) {
-        videoId = parsedUrl.pathname.split("/embed/")[1];
-      } else {
-        videoId = parsedUrl.searchParams.get("v");
-      }
+      videoId = parsedUrl.searchParams.get("v");
     }
 
     if (parsedUrl.hostname.includes("youtu.be")) {
       videoId = parsedUrl.pathname.replace("/", "");
     }
   } catch (error) {
-    return null;
+    console.warn("Invalid YouTube URL:", url);
   }
 
-  if (!videoId) {
-    return null;
-  }
+  if (!videoId) return "";
 
-  videoId = videoId.split("?")[0].split("&")[0];
-
- return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&playsinline=1&rel=0&modestbranding=1&enablejsapi=1`;
+  return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
 }
 
-function initYouTubeVideos() {
-  const videoBlocks = document.querySelectorAll(".js-youtube-video");
-
-  videoBlocks.forEach((block) => {
-    const youtubeUrl = block.dataset.youtubeUrl;
+youtubeBoxes.forEach((box) => {
+  box.addEventListener("click", () => {
+    const youtubeUrl = box.dataset.youtubeUrl;
     const embedUrl = getYouTubeEmbedUrl(youtubeUrl);
 
-    if (!embedUrl) {
-      return;
-    }
+    if (!embedUrl) return;
 
-    block.classList.add("has-video");
+    box.innerHTML = `
+      <iframe
+        src="${embedUrl}"
+        title="SMM Academy Video"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    `;
 
-    block.innerHTML = `
-  <iframe
-    src="${embedUrl}"
-    title="SMM 360 Video"
-    allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen>
-  </iframe>
-`;
+    box.classList.add("video-active");
   });
-}
-
-initYouTubeVideos();
-
-/* Strong validation */
-function validateStepTwo() {
-  const requiredFields = leadForm.querySelectorAll('.form-step[data-step="2"] [required]');
-
-  for (const field of requiredFields) {
-    if (!field.value.trim()) {
-      field.focus();
-      alert("Zəhmət olmasa bütün məcburi xanaları doldur.");
-      return false;
-    }
-  }
-
-  const digitsOnly = phoneInput.value.replace(/\D/g, "");
-
-  if (!phoneInput.value.startsWith("+994") || digitsOnly.length < 12) {
-    phoneInput.focus();
-    alert("Zəhmət olmasa Azərbaycan nömrəsini düzgün yaz: +994 XX XXX XX XX");
-    return false;
-  }
-
-  return true;
-}
-
-/* Lead form submit */
-leadForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
-
-  if (!selectedGoalInput.value) {
-    setStep(1);
-    alert("Zəhmət olmasa məqsədini seç.");
-    return;
-  }
-
-  if (!validateStepTwo()) {
-    return;
-  }
-
-  const submitButton = leadForm.querySelector('button[type="submit"]');
-
-  submitButton.disabled = true;
-  submitButton.textContent = "Göndərilir...";
-
-  const formData = new FormData(leadForm);
-
-  const leadData = {
-    package: formData.get("selectedPackage"),
-    goal: formData.get("selectedGoal"),
-    ctaSource: formData.get("ctaSource"),
-    name: formData.get("name"),
-    phone: formData.get("phone"),
-    email: formData.get("email"),
-    contactMethod: formData.get("contactMethod"),
-    contactTime: formData.get("contactTime"),
-    createdAt: new Date().toISOString()
-  };
-
-  console.log("Lead data:", leadData);
-
-  /*
-    Real inteqrasiya üçün bura webhook əlavə et:
-
-    await fetch("YOUR_WEBHOOK_URL", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(leadData)
-    });
-
-    Tracking üçün nümunələr:
-    - Meta Pixel Lead event
-    - GA4 form_submit event
-    - TikTok Pixel CompleteRegistration event
-  */
-
-  setTimeout(() => {
-    closeModal();
-
-    mainPage.style.display = "none";
-    thankYouPage.classList.add("active");
-
-    document.body.classList.add("thank-you-active");
-    document.body.style.overflowY = "auto";
-
-    window.scrollTo({
-      top: 0,
-      behavior: "auto"
-    });
-
-    submitButton.disabled = false;
-    submitButton.textContent = "Detalları göndər";
-
-    resetFormState();
-  }, 700);
 });
+
+// ---------- DESKTOP PARALLAX ----------
+const parallaxItems = document.querySelectorAll(
+  ".float-card, .hero-shape, .orb, .mockup-card, .floating-card"
+);
+
+function isDesktop() {
+  return window.innerWidth > 1120;
+}
+
+window.addEventListener("mousemove", (event) => {
+  if (!isDesktop()) return;
+
+  const x = (event.clientX / window.innerWidth - 0.5) * 22;
+  const y = (event.clientY / window.innerHeight - 0.5) * 22;
+
+  parallaxItems.forEach((item, index) => {
+    const strength = (index + 1) * 1.4;
+
+    item.style.transform = `translate(${x / strength}px, ${y / strength}px)`;
+  });
+});
+
+window.addEventListener("resize", () => {
+  if (isDesktop()) return;
+
+  parallaxItems.forEach((item) => {
+    item.style.transform = "";
+  });
+});
+
+// ---------- HEADER SCROLL STATE ----------
+const siteHeader = document.querySelector(".site-header");
+
+window.addEventListener("scroll", () => {
+  if (!siteHeader) return;
+
+  if (window.scrollY > 24) {
+    siteHeader.classList.add("scrolled");
+  } else {
+    siteHeader.classList.remove("scrolled");
+  }
+});
+
+// ---------- SMOOTH SCROLL FOR ANCHORS ----------
+const anchorLinks = document.querySelectorAll('a[href^="#"]');
+
+anchorLinks.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const targetId = link.getAttribute("href");
+
+    if (!targetId || targetId === "#") return;
+
+    const target = document.querySelector(targetId);
+
+    if (!target) return;
+
+    event.preventDefault();
+
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  });
+});
+
+// ---------- SIMPLE REVEAL ON SCROLL ----------
+const revealItems = document.querySelectorAll(
+  ".section, .package-card, .method-card, .month-card, .problem-card, .ba-card"
+);
+
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+      }
+    });
+  },
+  {
+    threshold: 0.12
+  }
+);
+
+revealItems.forEach((item) => {
+  item.classList.add("reveal-item");
+  revealObserver.observe(item);
+});
+
+// ---------- MOBILE STICKY HIDE NEAR FOOTER ----------
+const mobileSticky = document.querySelector(".mobile-sticky");
+const footer = document.querySelector(".footer");
+
+if (mobileSticky && footer) {
+  const stickyObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          mobileSticky.classList.add("hidden");
+        } else {
+          mobileSticky.classList.remove("hidden");
+        }
+      });
+    },
+    {
+      threshold: 0.1
+    }
+  );
+
+  stickyObserver.observe(footer);
+}
