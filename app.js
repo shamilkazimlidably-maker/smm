@@ -1,4 +1,4 @@
-// SMM Akademiyası Landing Page — app.js
+// SMM Akademiyası — Kong-style premium landing interactions
 
 const modal = document.getElementById("leadModal");
 const closeModalBtn = document.getElementById("closeModal");
@@ -25,7 +25,7 @@ const phoneInput = document.getElementById("phone");
 
 let currentStep = 1;
 
-// ---------- STEP CONTROL ----------
+// ---------- FORM STEP CONTROL ----------
 function setStep(step) {
   currentStep = step;
 
@@ -87,9 +87,7 @@ if (closeModalBtn) {
 
 if (modal) {
   modal.addEventListener("click", (event) => {
-    if (event.target === modal) {
-      closeModal();
-    }
+    if (event.target === modal) closeModal();
   });
 }
 
@@ -99,7 +97,7 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-// ---------- GOAL SELECT ----------
+// ---------- GOAL SELECTION ----------
 goalOptions.forEach((option) => {
   option.addEventListener("click", () => {
     goalOptions.forEach((item) => item.classList.remove("selected"));
@@ -108,37 +106,26 @@ goalOptions.forEach((option) => {
 
     const goal = option.dataset.goal || option.textContent.trim();
 
-    if (selectedGoalInput) {
-      selectedGoalInput.value = goal;
-    }
-
-    if (nextStepBtn) {
-      nextStepBtn.disabled = false;
-    }
+    if (selectedGoalInput) selectedGoalInput.value = goal;
+    if (nextStepBtn) nextStepBtn.disabled = false;
   });
 });
 
-// ---------- NEXT / BACK ----------
 if (nextStepBtn) {
   nextStepBtn.addEventListener("click", () => {
     if (!selectedGoalInput || !selectedGoalInput.value.trim()) return;
-
     setStep(2);
   });
 }
 
 if (backStepBtn) {
-  backStepBtn.addEventListener("click", () => {
-    setStep(1);
-  });
+  backStepBtn.addEventListener("click", () => setStep(1));
 }
 
 // ---------- PHONE INPUT ----------
 if (phoneInput) {
   phoneInput.addEventListener("focus", () => {
-    if (!phoneInput.value.trim()) {
-      phoneInput.value = "+994 ";
-    }
+    if (!phoneInput.value.trim()) phoneInput.value = "+994 ";
   });
 
   phoneInput.addEventListener("input", () => {
@@ -193,15 +180,11 @@ if (leadForm) {
 
     goalOptions.forEach((item) => item.classList.remove("selected"));
 
-    if (nextStepBtn) {
-      nextStepBtn.disabled = true;
-    }
+    if (nextStepBtn) nextStepBtn.disabled = true;
 
     setStep(1);
 
-    if (phoneInput) {
-      phoneInput.value = "+994 ";
-    }
+    if (phoneInput) phoneInput.value = "+994 ";
   });
 }
 
@@ -218,13 +201,11 @@ faqItems.forEach((item) => {
 
     faqItems.forEach((faq) => faq.classList.remove("active"));
 
-    if (!isActive) {
-      item.classList.add("active");
-    }
+    if (!isActive) item.classList.add("active");
   });
 });
 
-// ---------- YOUTUBE CLICK TO PLAY ----------
+// ---------- YOUTUBE CLICK-TO-PLAY ----------
 const youtubeBoxes = document.querySelectorAll(".js-youtube-video");
 
 function getYouTubeEmbedUrl(url) {
@@ -272,9 +253,33 @@ youtubeBoxes.forEach((box) => {
   });
 });
 
+// ---------- SNAP SLIDER ----------
+const resultsSlider = document.getElementById("resultsSlider");
+const sliderPrev = document.querySelector(".slider-prev");
+const sliderNext = document.querySelector(".slider-next");
+
+function slideResults(direction) {
+  if (!resultsSlider) return;
+
+  const amount = Math.min(390, resultsSlider.clientWidth * 0.82);
+
+  resultsSlider.scrollBy({
+    left: direction * amount,
+    behavior: "smooth"
+  });
+}
+
+if (sliderPrev) {
+  sliderPrev.addEventListener("click", () => slideResults(-1));
+}
+
+if (sliderNext) {
+  sliderNext.addEventListener("click", () => slideResults(1));
+}
+
 // ---------- DESKTOP PARALLAX ----------
 const parallaxItems = document.querySelectorAll(
-  ".floating-card, .hero-glow, .browser-card"
+  ".floating-chip, .page-orb, .browser-card"
 );
 
 function isDesktop() {
@@ -288,8 +293,7 @@ window.addEventListener("mousemove", (event) => {
   const y = (event.clientY / window.innerHeight - 0.5) * 22;
 
   parallaxItems.forEach((item, index) => {
-    const strength = (index + 1) * 1.45;
-
+    const strength = (index + 1) * 1.55;
     item.style.transform = `translate(${x / strength}px, ${y / strength}px)`;
   });
 });
@@ -337,9 +341,9 @@ anchorLinks.forEach((link) => {
   });
 });
 
-// ---------- REVEAL ON SCROLL ----------
+// ---------- REVEAL + STAGGER ----------
 const revealItems = document.querySelectorAll(
-  ".section, .problem-card, .persona-card, .method-card, .month-card, .package-card, .ba-card, .testimonial-grid article"
+  ".section, .glass-card, .pricing-card, .compare-card, .result-card, .learning-step, .old-list, .new-list"
 );
 
 const revealObserver = new IntersectionObserver(
