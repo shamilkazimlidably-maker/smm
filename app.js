@@ -1,7 +1,7 @@
 // ======================================================
-// SMM Academy Landing Page — app.js
-// Functionality: modal, 2-step form, package select,
-// thank-you page, FAQ accordion, VSL play, parallax
+// SMM Akademiyası Landing Page — app.js
+// Modal, 2-step lead form, package select,
+// thank-you page, FAQ, YouTube play, parallax, reveal
 // ======================================================
 
 // ---------- DOM ELEMENTS ----------
@@ -87,7 +87,6 @@ function closeModal() {
   document.body.classList.remove("modal-open");
 }
 
-// Open modal buttons
 openModalBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     const packageName = btn.dataset.package || "Ümumi maraq";
@@ -97,12 +96,10 @@ openModalBtns.forEach((btn) => {
   });
 });
 
-// Close modal button
 if (closeModalBtn) {
   closeModalBtn.addEventListener("click", closeModal);
 }
 
-// Close when clicking outside modal
 if (modal) {
   modal.addEventListener("click", (event) => {
     if (event.target === modal) {
@@ -111,7 +108,6 @@ if (modal) {
   });
 }
 
-// Close with Escape
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && modal && modal.classList.contains("active")) {
     closeModal();
@@ -137,7 +133,7 @@ goalOptions.forEach((option) => {
   });
 });
 
-// ---------- NEXT / BACK BUTTONS ----------
+// ---------- NEXT / BACK ----------
 if (nextStepBtn) {
   nextStepBtn.addEventListener("click", () => {
     if (!selectedGoalInput || !selectedGoalInput.value.trim()) {
@@ -154,7 +150,7 @@ if (backStepBtn) {
   });
 }
 
-// ---------- AZERBAIJAN PHONE INPUT HELP ----------
+// ---------- PHONE INPUT ----------
 if (phoneInput) {
   phoneInput.addEventListener("focus", () => {
     if (!phoneInput.value.trim()) {
@@ -188,9 +184,8 @@ if (leadForm) {
       submittedAt: new Date().toISOString()
     };
 
-    console.log("SMM Academy Lead:", leadData);
+    console.log("SMM Akademiyası Lead:", leadData);
 
-    // Optional: Save lead locally for testing
     localStorage.setItem("smmAcademyLead", JSON.stringify(leadData));
 
     closeModal();
@@ -246,7 +241,7 @@ faqItems.forEach((item) => {
   });
 });
 
-// ---------- YOUTUBE VIDEO CLICK-TO-PLAY ----------
+// ---------- YOUTUBE CLICK TO PLAY ----------
 const youtubeBoxes = document.querySelectorAll(".js-youtube-video");
 
 function getYouTubeEmbedUrl(url) {
@@ -283,7 +278,7 @@ youtubeBoxes.forEach((box) => {
     box.innerHTML = `
       <iframe
         src="${embedUrl}"
-        title="SMM Academy Video"
+        title="SMM Akademiyası Video"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen
@@ -296,7 +291,7 @@ youtubeBoxes.forEach((box) => {
 
 // ---------- DESKTOP PARALLAX ----------
 const parallaxItems = document.querySelectorAll(
-  ".float-card, .hero-shape, .orb, .mockup-card, .floating-card"
+  ".floating-card, .hero-glow, .browser-card"
 );
 
 function isDesktop() {
@@ -310,7 +305,7 @@ window.addEventListener("mousemove", (event) => {
   const y = (event.clientY / window.innerHeight - 0.5) * 22;
 
   parallaxItems.forEach((item, index) => {
-    const strength = (index + 1) * 1.4;
+    const strength = (index + 1) * 1.45;
 
     item.style.transform = `translate(${x / strength}px, ${y / strength}px)`;
   });
@@ -337,7 +332,7 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// ---------- SMOOTH SCROLL FOR ANCHORS ----------
+// ---------- SMOOTH SCROLL ----------
 const anchorLinks = document.querySelectorAll('a[href^="#"]');
 
 anchorLinks.forEach((link) => {
@@ -359,9 +354,9 @@ anchorLinks.forEach((link) => {
   });
 });
 
-// ---------- SIMPLE REVEAL ON SCROLL ----------
+// ---------- REVEAL ON SCROLL ----------
 const revealItems = document.querySelectorAll(
-  ".section, .package-card, .method-card, .month-card, .problem-card, .ba-card"
+  ".section, .problem-card, .persona-card, .method-card, .month-card, .package-card, .ba-card"
 );
 
 const revealObserver = new IntersectionObserver(
