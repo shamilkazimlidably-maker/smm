@@ -2,7 +2,7 @@
 
 :root {
   --bg: #222029;
-  --bg-dark: #16141d;
+  --bg-dark: #17151d;
   --bg-deep: #0f0d15;
 
   --surface: #292631;
@@ -238,7 +238,7 @@ button {
 .hero {
   position: relative;
   min-height: calc(100vh - 82px);
-  padding: 84px 0 52px;
+  padding: 62px 0 38px;
   text-align: center;
   display: flex;
   align-items: flex-start;
@@ -286,20 +286,20 @@ button {
 .center-section h2,
 .thank-you-page h1 {
   max-width: 1080px;
-  margin: 25px auto 0;
+  margin: 22px auto 0;
   color: white;
-  font-size: clamp(50px, 5.2vw, 88px);
+  font-size: clamp(46px, 4.9vw, 80px);
   line-height: 1.12;
-  letter-spacing: -0.058em;
+  letter-spacing: -0.055em;
   font-weight: 700;
   text-wrap: balance;
 }
 
 .hero-title {
-  max-width: 1120px;
-  font-size: clamp(54px, 5.55vw, 92px);
+  max-width: 1080px;
+  font-size: clamp(48px, 5vw, 82px);
   line-height: 1.1;
-  letter-spacing: -0.062em;
+  letter-spacing: -0.058em;
   font-weight: 700;
 }
 
@@ -308,7 +308,7 @@ button {
   background: #ffffff;
   color: #15131d;
   border-radius: 0.15em;
-  padding: 0.015em 0.17em 0.08em;
+  padding: 0.015em 0.16em 0.07em;
   line-height: 1.04;
   font-weight: 700;
   letter-spacing: -0.052em;
@@ -321,10 +321,10 @@ button {
 .hero-subtitle,
 .section-lead {
   max-width: 790px;
-  margin: 26px auto 0;
+  margin: 20px auto 0;
   color: var(--muted);
-  font-size: clamp(17px, 1.28vw, 20px);
-  line-height: 1.62;
+  font-size: clamp(16px, 1.22vw, 19px);
+  line-height: 1.58;
   font-weight: 400;
   letter-spacing: -0.014em;
 }
@@ -333,27 +333,28 @@ button {
   display: flex;
   justify-content: center;
   gap: 16px;
-  margin-top: 32px;
+  margin-top: 24px;
   flex-wrap: wrap;
 }
 
 /* VSL ABOVE FOLD */
 
 .vsl-shell {
-  width: min(780px, 100%);
-  margin: 38px auto 0;
+  width: min(720px, 100%);
+  margin: 30px auto 0;
 }
 
 .vsl-card {
   position: relative;
+  width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   background: #07060b;
   box-shadow:
-    0 34px 110px rgba(0, 0, 0, 0.48),
-    0 0 90px rgba(124, 58, 237, 0.12);
+    0 34px 100px rgba(0, 0, 0, 0.46),
+    0 0 80px rgba(124, 58, 237, 0.12);
   cursor: pointer;
 }
 
@@ -443,8 +444,8 @@ button {
 }
 
 .play-btn {
-  width: 62px;
-  height: 62px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -454,7 +455,7 @@ button {
     0 18px 50px rgba(0, 0, 0, 0.38),
     0 0 32px rgba(255, 255, 255, 0.1);
   margin: 0 auto;
-  font-size: 22px;
+  font-size: 21px;
 }
 
 .vsl-label {
@@ -467,6 +468,44 @@ button {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   z-index: 5;
+}
+
+/* DESKTOP VSL SIZE CONTROL */
+
+@media (min-width: 1200px) {
+  .vsl-shell {
+    width: 780px;
+    margin-top: 38px;
+  }
+}
+
+/* SHORT LAPTOP SCREEN — KEEP VSL ABOVE THE FOLD */
+
+@media (max-height: 820px) and (min-width: 900px) {
+  .hero {
+    padding-top: 54px;
+    padding-bottom: 34px;
+  }
+
+  .hero-title {
+    font-size: clamp(46px, 4.7vw, 76px);
+    line-height: 1.08;
+  }
+
+  .hero-subtitle {
+    margin-top: 18px;
+    font-size: 17px;
+    line-height: 1.52;
+  }
+
+  .hero-actions {
+    margin-top: 22px;
+  }
+
+  .vsl-shell {
+    width: 700px;
+    margin-top: 28px;
+  }
 }
 
 /* CREATIVE MARQUEE */
@@ -1282,7 +1321,18 @@ button {
   }
 
   .vsl-shell {
-    margin-top: 34px;
+    width: 100%;
+    margin-top: 32px;
+  }
+
+  .vsl-card {
+    border-radius: 16px;
+  }
+
+  .play-btn {
+    width: 56px;
+    height: 56px;
+    font-size: 20px;
   }
 
   .section {
