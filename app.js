@@ -1,4 +1,4 @@
-const WHATSAPP_NUMBER = "994XXXXXXXXX";
+const WHATSAPP_NUMBER = "99506588201";
 
 const app = document.getElementById("app");
 
